@@ -1,18 +1,18 @@
 #!/bin/bash
 # ============================================================
-# FMCG SupplyChainIQ — Install Apache Spark 4.0.4
+# FMCG SupplyChainIQ — Install Apache Spark 4.0.5
 # Downloads Spark pre-built for Hadoop 3 to /opt/spark.
 # Configures SPARK_HOME and adds Spark binaries to PATH.
-# Idempotent: skips if Spark 4.0.4 is already installed.
+# Idempotent: skips if Spark 4.0.5 is already installed.
 # ============================================================
 
 set -euo pipefail
 
-SPARK_VERSION="4.0.4"
-SPARK_TARBALL="spark-${SPARK_VERSION}-bin-hadoop3.tgz"
-SPARK_URL="https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_TARBALL}"
+SPARK_VERSION="4.0.5"
+SPARK_TARBALL="spark-${SPARK_VERSION}-bin-without-hadoop.tgz"
+SPARK_URL="https://downloads.apache.org/spark/spark-${SPARK_VERSION}/${SPARK_TARBALL}"
 SPARK_HOME="/opt/spark"
-DOWNLOAD_DIR="/tmp"
+DOWNLOAD_DIR="/data/downloads"
 
 echo "[install_spark] Installing Apache Spark ${SPARK_VERSION}..."
 
@@ -35,9 +35,9 @@ fi
 echo "[install_spark] Extracting to ${SPARK_HOME}..."
 sudo mkdir -p "$SPARK_HOME"
 sudo tar -xzf "$DOWNLOAD_DIR/$SPARK_TARBALL" -C /opt/
-if [[ -d "/opt/spark-${SPARK_VERSION}-bin-hadoop3" ]]; then
+if [[ -d "/opt/spark-${SPARK_VERSION}-bin-without-hadoop" ]]; then
     sudo rm -rf "$SPARK_HOME" 2>/dev/null || true
-    sudo mv "/opt/spark-${SPARK_VERSION}-bin-hadoop3" "$SPARK_HOME"
+    sudo mv "/opt/spark-${SPARK_VERSION}-bin-without-hadoop" "$SPARK_HOME"
 fi
 
 # Set ownership

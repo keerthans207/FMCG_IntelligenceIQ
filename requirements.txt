@@ -2,11 +2,11 @@
 # FMCG SupplyChainIQ — Remote Python Dependencies
 # Install on the REMOTE server, not on the Windows laptop.
 # Pinned to versions verified compatible with the remote stack
-# (Ubuntu 22.04, OpenJDK 17, Hadoop 3.4.1, Spark 4.0.4, MongoDB 8.0).
+# PySpark and Py4J are provided by the existing /opt/spark installation; do not pip-install them.
+# (Ubuntu 24.04, OpenJDK 17, Hadoop 3.5.0, Spark 4.0.5, MongoDB 8.0).
 # ============================================================
 
 # ---- Core data processing ----
-pyspark==4.0.4
 pyarrow==19.0.1
 
 # ---- MongoDB ----

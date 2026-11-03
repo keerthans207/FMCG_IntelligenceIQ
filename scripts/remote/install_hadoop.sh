@@ -1,18 +1,18 @@
 #!/bin/bash
 # ============================================================
-# FMCG SupplyChainIQ — Install Apache Hadoop 3.4.1
+# FMCG SupplyChainIQ — Install Apache Hadoop 3.5.0
 # Downloads and extracts Hadoop to /opt/hadoop.
 # Configures HADOOP_HOME and adds Hadoop binaries to PATH.
-# Idempotent: skips if Hadoop 3.4.1 is already installed.
+# Idempotent: skips if Hadoop 3.5.0 is already installed.
 # ============================================================
 
 set -euo pipefail
 
-HADOOP_VERSION="3.4.1"
+HADOOP_VERSION="3.5.0"
 HADOOP_TARBALL="hadoop-${HADOOP_VERSION}.tar.gz"
-HADOOP_URL="https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/${HADOOP_TARBALL}"
+HADOOP_URL="https://downloads.apache.org/hadoop/common/stable/${HADOOP_TARBALL}"
 HADOOP_HOME="/opt/hadoop"
-DOWNLOAD_DIR="/tmp"
+DOWNLOAD_DIR="/data/downloads"
 
 echo "[install_hadoop] Installing Apache Hadoop ${HADOOP_VERSION}..."
 
@@ -35,7 +35,7 @@ fi
 echo "[install_hadoop] Extracting to ${HADOOP_HOME}..."
 sudo mkdir -p "$HADOOP_HOME"
 sudo tar -xzf "$DOWNLOAD_DIR/$HADOOP_TARBALL" -C /opt/
-# The tarball extracts to hadoop-3.4.1; move to hadoop
+# The tarball extracts to hadoop-3.5.0; move to hadoop
 if [[ -d "/opt/hadoop-${HADOOP_VERSION}" ]]; then
     sudo rm -rf "$HADOOP_HOME" 2>/dev/null || true
     sudo mv "/opt/hadoop-${HADOOP_VERSION}" "$HADOOP_HOME"

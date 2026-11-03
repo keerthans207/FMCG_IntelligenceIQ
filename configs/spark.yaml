@@ -10,17 +10,17 @@ spark:
 
   # Resource allocation (tune based on EC2 instance size)
   driver:
-    memory: "2g"
-    cores: 2
-    max_result_size: "1g"
+    memory: "768m"
+    cores: 1
+    max_result_size: "512m"
   executor:
-    memory: "2g"
-    cores: 2
-    instances: 2
+    memory: "768m"
+    cores: 1
+    instances: 1
 
   # Spark SQL
   sql:
-    shuffle_partitions: 32
+    shuffle_partitions: 2
     adaptive_query_enabled: true
     coalesce_partitions_enabled: true
 
@@ -31,9 +31,9 @@ spark:
 
   # MLlib
   mllib:
-    max_iter: 50
-    max_depth: 10
-    num_trees: 30
+    max_iter: 20
+    max_depth: 6
+    num_trees: 10
     seed: 42
 
 # HDFS read/write defaults

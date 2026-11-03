@@ -28,7 +28,7 @@ sudo apt-get install -y gnupg curl
 
 # Add MongoDB GPG key
 echo "[install_mongodb] Adding MongoDB GPG key..."
-curl -fsSL https://www.mongodb.org/static/pgp/server-${MONGO_VERSION}.asc | \
+curl -fsSL https://pgp.mongodb.com/server-${MONGO_VERSION}.asc | \
     sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/mongodb-server-${MONGO_VERSION}.gpg
 
 # Add MongoDB repository

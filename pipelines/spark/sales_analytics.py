@@ -52,12 +52,12 @@ def run_sales_analytics(spark, hdfs_base: str):
     weekly_sales = spark.sql("""
         SELECT
             YEAR(transaction_date) AS year,
-            WEEK(transaction_date) AS week,
+            weekofyear(transaction_date) AS week,
             sku_id,
             SUM(units_sold) AS total_units,
             SUM(total_amount) AS total_revenue
         FROM sales
-        GROUP BY YEAR(transaction_date), WEEK(transaction_date), sku_id
+        GROUP BY YEAR(transaction_date), weekofyear(transaction_date), sku_id
     """)
     weekly_sales.write.mode("overwrite").parquet(f"{hdfs_base}/gold/demand_analytics/weekly_sales")
 

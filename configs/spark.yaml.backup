@@ -1,0 +1,46 @@
+# Apache Spark configuration
+# PySpark jobs run on YARN (client mode) or local[*] for unit tests
+
+spark:
+  app_name: "FMCG-SupplyChainIQ"
+
+  # Master — "yarn" for production, "local[*]" for unit tests
+  master: "yarn"
+  deploy_mode: "client"
+
+  # Resource allocation (tune based on EC2 instance size)
+  driver:
+    memory: "2g"
+    cores: 2
+    max_result_size: "1g"
+  executor:
+    memory: "2g"
+    cores: 2
+    instances: 2
+
+  # Spark SQL
+  sql:
+    shuffle_partitions: 32
+    adaptive_query_enabled: true
+    coalesce_partitions_enabled: true
+
+  # I/O
+  io:
+    compression: "snappy"
+    parquet_format: "parquet"
+
+  # MLlib
+  mllib:
+    max_iter: 50
+    max_depth: 10
+    num_trees: 30
+    seed: 42
+
+# HDFS read/write defaults
+io:
+  raw_format: "jsonl"        # JSON Lines for raw operational exports
+  curated_format: "parquet"  # Parquet for silver/gold curated datasets
+  partition_by:
+    sales: ["transaction_date"]
+    inventory: ["snapshot_date"]
+    forecasts: ["forecast_date"]
