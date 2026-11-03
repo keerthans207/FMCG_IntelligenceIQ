@@ -84,3 +84,24 @@ Desktop.ini
 !data/schemas/*.json
 !data/sample/*.json
 !configs/*.yaml
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.pem
+*.key
+
+# Python environments and caches
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated data and runtime files
+data/generated/
+logs/
+models/
+*.log
