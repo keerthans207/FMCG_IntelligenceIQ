@@ -1,0 +1,16 @@
+[Unit]
+Description=FMCG SupplyChainIQ FastAPI Backend
+After=network.target mongod.service
+Wants=mongod.service
+
+[Service]
+Type=simple
+User=fmcg
+WorkingDirectory=/opt/fmcg-supplychainiq
+EnvironmentFile=/opt/fmcg-supplychainiq/.env
+ExecStart=/opt/fmcg-venv/bin/uvicorn fmcg.api.main:app --host 0.0.0.0 --port 8000 --workers 2
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=FMCG SupplyChainIQ Streamlit Dashboard
+After=network.target fmcg-api.service
+Wants=fmcg-api.service
+
+[Service]
+Type=simple
+User=fmcg
+WorkingDirectory=/opt/fmcg-supplychainiq
+EnvironmentFile=/opt/fmcg-supplychainiq/.env
+ExecStart=/opt/fmcg-venv/bin/streamlit run frontend/app.py --server.port 8501 --server.address 127.0.0.1
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
