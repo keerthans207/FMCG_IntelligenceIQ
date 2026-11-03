@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PipelineRun",
+  "description": "Pipeline execution record",
+  "type": "object",
+  "required": ["run_id", "start_time", "status"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "start_time": { "type": "string", "format": "date-time" },
+    "end_time": { "type": ["string", "null"], "format": "date-time" },
+    "status": { "type": "string", "enum": ["queued", "running", "completed", "failed", "partial"] },
+    "records_ingested": { "type": "integer", "minimum": 0 },
+    "records_processed": { "type": "integer", "minimum": 0 },
+    "records_rejected": { "type": "integer", "minimum": 0 },
+    "execution_duration": { "type": "number", "minimum": 0 },
+    "error_message": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

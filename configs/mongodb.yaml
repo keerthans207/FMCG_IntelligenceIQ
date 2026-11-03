@@ -1,0 +1,84 @@
+# MongoDB configuration
+# Operational NoSQL database — collections, indexes, validation
+
+database:
+  name: "fmcg_supplychainiq"
+
+collections:
+  products:
+    validator:
+      json_schema:
+        bsonType: "object"
+        required: ["sku_id", "product_name", "category", "unit_cost", "selling_price"]
+        properties:
+          sku_id: { bsonType: "string" }
+          product_name: { bsonType: "string" }
+          brand: { bsonType: "string" }
+          category: { bsonType: "string" }
+          unit_size: { bsonType: "string" }
+          unit_cost: { bsonType: "double" }
+          selling_price: { bsonType: "double" }
+          shelf_life_days: { bsonType: "int" }
+          created_at: { bsonType: "date" }
+    indexes:
+      - { key: { sku_id: 1 }, unique: true }
+      - { key: { category: 1 } }
+      - { key: { brand: 1 } }
+
+  locations:
+    indexes:
+      - { key: { location_id: 1 }, unique: true }
+      - { key: { region: 1 } }
+
+  suppliers:
+    indexes:
+      - { key: { supplier_id: 1 }, unique: true }
+      - { key: { region: 1 } }
+
+  batches:
+    indexes:
+      - { key: { batch_id: 1 }, unique: true }
+      - { key: { sku_id: 1 } }
+      - { key: { expiry_date: 1 } }
+
+  sales_transactions:
+    indexes:
+      - { key: { transaction_id: 1 }, unique: true }
+      - { key: { sku_id: 1, transaction_timestamp: -1 } }
+      - { key: { store_id: 1, transaction_timestamp: -1 } }
+
+  inventory_snapshots:
+    indexes:
+      - { key: { snapshot_id: 1 }, unique: true }
+      - { key: { location_id: 1, sku_id: 1, snapshot_timestamp: -1 } }
+      - { key: { batch_id: 1 } }
+
+  stock_movements:
+    indexes:
+      - { key: { movement_id: 1 }, unique: true }
+      - { key: { location_id: 1, sku_id: 1, timestamp: -1 } }
+
+  shipments:
+    indexes:
+      - { key: { shipment_id: 1 }, unique: true }
+      - { key: { shipment_status: 1 } }
+      - { key: { destination_location_id: 1 } }
+
+  analytics_alerts:
+    indexes:
+      - { key: { alert_id: 1 }, unique: true }
+      - { key: { severity: 1, acknowledged: 1 } }
+      - { key: { sku_id: 1 } }
+
+  forecasts:
+    indexes:
+      - { key: { forecast_id: 1 }, unique: true }
+      - { key: { sku_id: 1, location_id: 1, forecast_date: 1 } }
+
+  pipeline_runs:
+    indexes:
+      - { key: { run_id: 1 }, unique: true }
+      - { key: { start_time: -1 } }
+
+# TTL for old alerts auto-acknowledgement (optional, 0 = disabled)
+alert_auto_ack_ttl_seconds: 0

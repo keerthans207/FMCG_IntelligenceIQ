@@ -1,0 +1,63 @@
+# Hadoop HDFS / YARN configuration
+# Single-node academic deployment; expandable later
+
+hdfs:
+  root_path: "/fmcg-supplychainiq"
+  replication: 1          # single-node: replication=1 (no fault tolerance)
+  block_size: "128m"
+  namenode_dir: "/data/hadoop/namenode"
+  datanode_dir: "/data/hadoop/datanode"
+
+yarn:
+  ResourceManager:
+    hostname: "localhost"
+    port: 8032
+    scheduler_port: 8030
+    tracker_port: 8031
+    webapp_port: 8088
+  NodeManager:
+    port: 0               # ephemeral
+    webapp_port: 8042
+  memory:
+    scheduler_minimum_allocation_mb: 512
+    scheduler_maximum_allocation_mb: 4096
+    nodemanager_resource_mb: 4096
+  vcores:
+    scheduler_minimum: 1
+    scheduler_maximum: 4
+
+# Directory structure inside HDFS root
+hdfs_dirs:
+  raw:
+    - products
+    - locations
+    - suppliers
+    - batches
+    - sales
+    - inventory
+    - shipments
+    - stock_movements
+  bronze:
+    - sales
+    - inventory
+    - batches
+    - shipments
+  silver:
+    - cleaned_sales
+    - validated_inventory
+    - standardized_batches
+    - validated_shipments
+  gold:
+    - inventory_analytics
+    - demand_analytics
+    - expiry_analytics
+    - shipment_analytics
+    - anomaly_analytics
+  forecasts:
+    - training
+    - predictions
+    - evaluation
+  metadata:
+    - schemas
+    - manifests
+    - pipeline_runs

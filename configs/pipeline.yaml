@@ -1,0 +1,73 @@
+# Pipeline orchestration configuration
+
+pipeline:
+  name: "fmcg-supplychainiq-pipeline"
+
+  stages:
+    - name: "validate_config"
+      description: "Validate environment configuration"
+      critical: true
+    - name: "check_mongo"
+      description: "Verify MongoDB connection"
+      critical: true
+    - name: "check_hdfs"
+      description: "Verify HDFS availability"
+      critical: true
+    - name: "generate_data"
+      description: "Generate or locate input records"
+      critical: false
+      skip_if_exists: true
+    - name: "ingest_mongo"
+      description: "Ingest operational records into MongoDB"
+      critical: true
+    - name: "export_hdfs"
+      description: "Export historical records to HDFS"
+      critical: true
+    - name: "spark_validate"
+      description: "Run Spark data validation"
+      critical: true
+    - name: "spark_etl"
+      description: "Run Spark ETL to silver storage"
+      critical: true
+    - name: "sales_analytics"
+      description: "Run Spark SQL sales analytics"
+      critical: true
+    - name: "inventory_analytics"
+      description: "Calculate inventory health metrics"
+      critical: true
+    - name: "expiry_analytics"
+      description: "Calculate expiry-risk metrics"
+      critical: true
+    - name: "shipment_analytics"
+      description: "Calculate shipment analytics"
+      critical: true
+    - name: "anomaly_detection"
+      description: "Run anomaly analysis"
+      critical: false
+    - name: "forecast_train"
+      description: "Train/evaluate forecasting model"
+      critical: false
+      min_history_days: 30
+    - name: "forecast_predict"
+      description: "Generate seven-day forecasts"
+      critical: false
+    - name: "publish_mongo"
+      description: "Publish selected results to MongoDB"
+      critical: true
+    - name: "record_run"
+      description: "Record pipeline run metadata"
+      critical: true
+    - name: "verify_outputs"
+      description: "Verify outputs and generate execution report"
+      critical: true
+
+  retry:
+    max_attempts: 2
+    backoff_seconds: 5
+
+  checkpoint:
+    dir: "/data/fmcg/checkpoints"
+    enabled: true
+
+  idempotent: true
+  fail_fast: false

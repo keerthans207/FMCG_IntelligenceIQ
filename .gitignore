@@ -1,0 +1,86 @@
+# ============================================================
+# FMCG SupplyChainIQ — .gitignore
+# Keeps heavy files, generated data, secrets, and caches
+# out of the repository. Heavy artifacts live on remote
+# persistent storage, never in the local repo.
+# ============================================================
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- Environment & secrets ----
+.env
+.env.local
+.env.remote
+*.pem
+*.key
+id_rsa*
+credentials.json
+secrets/
+
+# ---- IDE / editor ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ---- Generated datasets (keep small samples, exclude large) ----
+data/generated/*.csv
+data/generated/*.json
+data/generated/*.jsonl
+data/generated/*.parquet
+data/sample/large_*
+
+# ---- Model artifacts ----
+artifacts/models/
+artifacts/checkpoints/
+*.model
+*.pmml
+
+# ---- Reports & metrics (generated, not committed) ----
+artifacts/reports/*.csv
+artifacts/metrics/*.csv
+artifacts/metrics/*.json
+
+# ---- Hadoop / Spark local temp ----
+hadoop_data/
+spark_warehouse/
+metastore_db/
+derby.log
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- Streamlit ----
+.streamlit/secrets.toml
+
+# ---- OS-specific ----
+.DS_Store
+ehthumbs.db
+Desktop.ini
+
+# ---- Keep these tracked (override above) ----
+!.env.example
+!data/schemas/*.json
+!data/sample/*.json
+!configs/*.yaml

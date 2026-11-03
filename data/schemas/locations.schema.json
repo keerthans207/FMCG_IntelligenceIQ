@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Location",
+  "description": "Warehouse or retail store location",
+  "type": "object",
+  "required": ["location_id", "location_name", "location_type", "city", "state", "region"],
+  "properties": {
+    "location_id": { "type": "string", "pattern": "^LOC[0-9]{4}$" },
+    "location_name": { "type": "string", "minLength": 1 },
+    "location_type": { "type": "string", "enum": ["warehouse", "distributor", "wholesale", "retail"] },
+    "city": { "type": "string" },
+    "state": { "type": "string" },
+    "region": { "type": "string", "enum": ["North", "South", "East", "West", "Central"] }
+  },
+  "additionalProperties": false
+}

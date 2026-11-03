@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Supplier",
+  "description": "Product supplier",
+  "type": "object",
+  "required": ["supplier_id", "supplier_name", "region", "typical_lead_time_days"],
+  "properties": {
+    "supplier_id": { "type": "string", "pattern": "^SUP[0-9]{4}$" },
+    "supplier_name": { "type": "string", "minLength": 1 },
+    "region": { "type": "string", "enum": ["North", "South", "East", "West", "Central"] },
+    "typical_lead_time_days": { "type": "integer", "minimum": 1, "maximum": 60 }
+  },
+  "additionalProperties": false
+}

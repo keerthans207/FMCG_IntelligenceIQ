@@ -1,0 +1,46 @@
+# ============================================================
+# FMCG SupplyChainIQ — pyproject.toml
+# Defines the installable Python package, tooling config,
+# and project metadata. Designed for remote deployment.
+# ============================================================
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fmcg-supplychainiq"
+version = "1.0.0"
+description = "Distributed FMCG Inventory Monitoring, Supply Chain Analytics and Demand Forecasting System"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "FMCG SupplyChainIQ Project"},
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.27",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+markers = [
+    "unit: lightweight unit tests runnable without remote services",
+    "integration: tests requiring MongoDB, HDFS, or Spark — skip if services unavailable",
+    "slow: tests that take more than a few seconds",
+]
+
+[tool.setuptools.package-data]
+"fmcg" = ["*.yaml", "*.json"]

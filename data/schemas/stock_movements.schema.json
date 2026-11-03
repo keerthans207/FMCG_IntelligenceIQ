@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StockMovement",
+  "description": "Stock movement event (inbound, outbound, transfer, adjustment)",
+  "type": "object",
+  "required": ["movement_id", "timestamp", "location_id", "sku_id", "batch_id", "movement_type", "quantity_change", "reference_id"],
+  "properties": {
+    "movement_id": { "type": "string", "pattern": "^MOV[0-9]{10}$" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "location_id": { "type": "string", "pattern": "^LOC[0-9]{4}$" },
+    "sku_id": { "type": "string", "pattern": "^SKU[0-9]{5}$" },
+    "batch_id": { "type": "string", "pattern": "^BAT[0-9]{6}$" },
+    "movement_type": { "type": "string", "enum": ["inbound", "outbound", "transfer_in", "transfer_out", "adjustment", "damage", "expiry_writeoff"] },
+    "quantity_change": { "type": "integer", "description": "Positive for inbound/transfer_in, negative for outbound/transfer_out/damage/writeoff" },
+    "reference_id": { "type": "string", "description": "Reference to shipment, transaction, or adjustment reason" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch",
+  "description": "Product batch with manufacturing and expiry dates",
+  "type": "object",
+  "required": ["batch_id", "sku_id", "manufacturing_date", "expiry_date", "initial_quantity", "supplier_id"],
+  "properties": {
+    "batch_id": { "type": "string", "pattern": "^BAT[0-9]{6}$" },
+    "sku_id": { "type": "string", "pattern": "^SKU[0-9]{5}$" },
+    "manufacturing_date": { "type": "string", "format": "date" },
+    "expiry_date": { "type": "string", "format": "date" },
+    "initial_quantity": { "type": "integer", "minimum": 0 },
+    "supplier_id": { "type": "string", "pattern": "^SUP[0-9]{4}$" }
+  },
+  "additionalProperties": false
+}

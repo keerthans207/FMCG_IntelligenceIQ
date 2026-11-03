@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product",
+  "description": "FMCG product master record",
+  "type": "object",
+  "required": ["sku_id", "product_name", "brand", "category", "unit_size", "unit_cost", "selling_price", "shelf_life_days", "created_at"],
+  "properties": {
+    "sku_id": { "type": "string", "pattern": "^SKU[0-9]{5}$" },
+    "product_name": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "brand": { "type": "string", "minLength": 1 },
+    "category": { "type": "string", "enum": ["Beverages", "Snacks", "Dairy", "Personal Care", "Household", "Bakery", "Confectionery", "Frozen Foods", "Health", "Baby Care"] },
+    "unit_size": { "type": "string" },
+    "unit_cost": { "type": "number", "minimum": 0 },
+    "selling_price": { "type": "number", "minimum": 0 },
+    "shelf_life_days": { "type": "integer", "minimum": 1 },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

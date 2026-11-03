@@ -1,0 +1,5 @@
+{"sku_id": "SKU00001", "product_name": "FreshMart Beverages 1", "brand": "FreshMart", "category": "Beverages", "unit_size": "1L", "unit_cost": 25.0, "selling_price": 40.0, "shelf_life_days": 365, "created_at": "2025-01-15T10:00:00Z"}
+{"sku_id": "SKU00002", "product_name": "UrbanBite Snacks 2", "brand": "UrbanBite", "category": "Snacks", "unit_size": "200g", "unit_cost": 15.0, "selling_price": 25.0, "shelf_life_days": 180, "created_at": "2025-01-20T10:00:00Z"}
+{"sku_id": "SKU00003", "product_name": "NatureNest Dairy 3", "brand": "NatureNest", "category": "Dairy", "unit_size": "500ml", "unit_cost": 30.0, "selling_price": 50.0, "shelf_life_days": 14, "created_at": "2025-02-01T10:00:00Z"}
+{"sku_id": "SKU00004", "product_name": "PrimeChoice Household 4", "brand": "PrimeChoice", "category": "Household", "unit_size": "1kg", "unit_cost": 80.0, "selling_price": 120.0, "shelf_life_days": 730, "created_at": "2025-02-15T10:00:00Z"}
+{"sku_id": "SKU00005", "product_name": "DailyDelight Bakery 5", "brand": "DailyDelight", "category": "Bakery", "unit_size": "250g", "unit_cost": 20.0, "selling_price": 35.0, "shelf_life_days": 10, "created_at": "2025-03-01T10:00:00Z"}

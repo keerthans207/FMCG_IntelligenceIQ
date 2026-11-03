@@ -1,0 +1,48 @@
+# Remote deployment profile configuration
+# Pinned versions verified compatible as of November 2026
+# See docs/deployment_guide.md for the compatibility rationale
+
+profile_a:  # Primary: AWS EC2 / Ubuntu VM
+  os: "Ubuntu 22.04 LTS"
+  java:
+    package: "openjdk-17-jdk-headless"
+    version: "17"
+  hadoop:
+    version: "3.4.1"
+    download_url: "https://archive.apache.org/dist/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar.gz"
+    install_dir: "/opt/hadoop"
+  spark:
+    version: "4.0.4"
+    download_url: "https://archive.apache.org/dist/spark/spark-4.0.4/spark-4.0.4-bin-hadoop3.tgz"
+    install_dir: "/opt/spark"
+  mongodb:
+    version: "8.0"
+    package: "mongodb-org"
+  python:
+    version: "3.11"
+    package: "python3.11"
+  python_venv: "/opt/fmcg-venv"
+
+profile_b:  # College infrastructure — same versions, different host
+  os: "Ubuntu 22.04 LTS"
+  java:
+    package: "openjdk-17-jdk-headless"
+    version: "17"
+  hadoop:
+    version: "3.4.1"
+    install_dir: "/opt/hadoop"
+  spark:
+    version: "4.0.4"
+    install_dir: "/opt/spark"
+  mongodb:
+    version: "8.0"
+  python:
+    version: "3.11"
+
+profile_c:  # CamberCloud optional
+  spark_mode: "local"
+  stash_mount: "/stash/fmcg"
+  note: >-
+    CamberCloud is used only for batch Spark/MLlib execution.
+    It does NOT provide persistent HDFS, MongoDB, or public hosting.
+    Stash is object storage, not a POSIX HDFS replacement.

@@ -1,0 +1,40 @@
+# Application-level configuration
+app:
+  name: "FMCG SupplyChainIQ"
+  version: "1.0.0"
+  description: >-
+    Distributed FMCG Inventory Monitoring, Supply Chain Analytics
+    and Demand Forecasting System
+
+# Dataset size presets used by the data generator and pipeline
+dataset_sizes:
+  small:
+    transactions: 10000
+    products: 50
+    locations: 10
+    suppliers: 8
+    days: 90
+  medium:
+    transactions: 100000
+    products: 100
+    locations: 20
+    suppliers: 15
+    days: 180
+  large:
+    transactions: 500000
+    products: 200
+    locations: 30
+    suppliers: 20
+    days: 365
+  xlarge:
+    transactions: 1000000
+    products: 300
+    locations: 40
+    suppliers: 25
+    days: 365
+
+# Default size for interactive runs
+default_size: small
+
+# Number of forecast days to predict
+forecast_horizon_days: 7

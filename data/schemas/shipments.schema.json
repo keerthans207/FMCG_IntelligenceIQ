@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shipment",
+  "description": "Shipment record between locations",
+  "type": "object",
+  "required": ["shipment_id", "origin_location_id", "destination_location_id", "dispatch_timestamp", "expected_delivery_timestamp", "shipment_status"],
+  "properties": {
+    "shipment_id": { "type": "string", "pattern": "^SHP[0-9]{8}$" },
+    "origin_location_id": { "type": "string", "pattern": "^LOC[0-9]{4}$" },
+    "destination_location_id": { "type": "string", "pattern": "^LOC[0-9]{4}$" },
+    "dispatch_timestamp": { "type": "string", "format": "date-time" },
+    "expected_delivery_timestamp": { "type": "string", "format": "date-time" },
+    "actual_delivery_timestamp": { "type": ["string", "null"], "format": "date-time", "description": "Null until delivered" },
+    "shipment_status": { "type": "string", "enum": ["pending", "in_transit", "delivered", "delayed", "cancelled"] }
+  },
+  "additionalProperties": false
+}
